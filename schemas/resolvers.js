@@ -16,7 +16,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    
+    allUsers: async (parent, args, context) =>  {
+      const users = await User.find();
+
+      return users;
+    }
     
       
     },
