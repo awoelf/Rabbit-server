@@ -22,7 +22,7 @@ app.use(express.json());
 // }
 
 app.get('/', (req, res) => {
-  res.json('Hello');
+  res.json(`Use GraphQL at https://rabbit-app.herokuapp.com${server.graphqlPath}`);
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
