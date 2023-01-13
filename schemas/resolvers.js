@@ -7,7 +7,7 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id);
+        const user = await User.findById(context.user._id).populate('friends');
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
@@ -17,7 +17,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     allUsers: async (parent, args, context) =>  {
-      const users = await User.find();
+      const users = await User.find().populate('friends');
 
       return users;
     }
@@ -57,6 +57,15 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    addFriend : async (parent, args) => {
+      const friend=User.findOneAndUpdate({ _id: args.userId }, { $addToSet: { friends: args.friendId } }, { new: true })
+    
+    },
+    removeFriend: async (parent, args) => {
+      const friend=User.findOneAndUpdate({ _id: args.userId }, { $pull: { friends: args.friendId } }, { new: true })
+    
     }
   }
 };

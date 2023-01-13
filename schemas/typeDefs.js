@@ -8,6 +8,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    friends: [User]!
   }
 
 
@@ -27,6 +28,8 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
+    addFriend(_id:ID) : User
+    removeFriend(_id:ID) : User
   }
 `;
 
