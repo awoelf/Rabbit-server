@@ -15,6 +15,13 @@ db.once('open', async () => {
   });
 
   await User.create({
+    firstName: 'Alexis',
+    lastName: 'Woelffer',
+    email: 'alexiswolfie@gmail.com',
+    password: 'password12345'
+  })
+
+  await User.create({
     firstName: 'Elijah',
     lastName: 'Holt',
     email: 'eholt@testmail.com',
