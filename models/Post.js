@@ -1,7 +1,7 @@
+const commentSchema = require('./Comment');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-import commentSchema, { post } from './Comment';
 
 const postSchema = new Schema({
     postAuthor: {
