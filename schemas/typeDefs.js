@@ -6,25 +6,10 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    friends: [User]!
   }
 
-  type Post {
-    _id: ID
-    postAuthor: String
-    title: String
-    textContent: String
-    imageContent: String
-    likes: Int
-    createdAt: Date
-    comments: [Comment]
-  }
 
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: ID
-    createdAt: Date
-  }
 
   type Auth {
     token: ID
@@ -40,6 +25,8 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
+    addFriend(_id:ID) : User
+    removeFriend(_id:ID) : User
   }
 `;
 
