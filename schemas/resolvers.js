@@ -8,8 +8,6 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).populate('friends');
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
         return user;
       }
 
