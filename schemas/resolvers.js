@@ -29,7 +29,7 @@ const resolvers = {
     
     updateUser: async (parent, args, context) => {
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, {email: newEmail}, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, {email: args.newEmail}, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');
