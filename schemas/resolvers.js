@@ -17,11 +17,8 @@ const resolvers = {
       const users = await User.find().populate('friends');
 
       return users;
-    }
-    
-      
     },
-  
+  },
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -32,7 +29,7 @@ const resolvers = {
     
     updateUser: async (parent, args, context) => {
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, {email: newEmail}, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');
@@ -52,6 +49,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
+      console.log(token)
 
       return { token, user };
     },
