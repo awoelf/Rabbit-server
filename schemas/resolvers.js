@@ -49,7 +49,9 @@ const resolvers = {
           { new: true }
         );
 
-        // const token = signToken(user);
+        console.log(user);
+        
+        const token = signToken(user);
 
         return { token, user };
       }
