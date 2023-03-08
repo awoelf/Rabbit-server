@@ -24,10 +24,10 @@ const typeDefs = gql`
       password: String!
     ): Auth
     updateUser(
-      newEmail: String!
-      newId: String!
-      newNickname: String!
-      newPassword: String!
+      newEmail: String
+      newId: String
+      newNickname: String
+      newPassword: String
       currentPassword: String!
     ): User
     login(email: String!, password: String!): Auth
