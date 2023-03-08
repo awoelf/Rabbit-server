@@ -28,6 +28,7 @@ const resolvers = {
     },
     
     updateUser: async (parent, args, context) => {
+      console.log(args);
       if (context.user) {
         const user = await User.findById(context.userId);
         const correctPw = await user.isCorrectPassword(args.currentPassword);
