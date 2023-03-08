@@ -49,7 +49,9 @@ const resolvers = {
 					{ new: true }
 				);
 
-				return updateUser;
+				const token = signToken(updateUser);
+
+				return { updateUser, token };
 			}
 
 			throw new AuthenticationError('Not logged in');
