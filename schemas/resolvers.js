@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User} = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
   Query: {
@@ -28,9 +29,9 @@ const resolvers = {
     },
     
     updateUser: async (parent, args, context) => {
-      console.log(args);
+      const saltRounds = 10;
       if (context.user) {
-        const user = await User.findById(context.userId);
+        const user = await User.findById(context.user._id);
         const correctPw = await user.isCorrectPassword(args.currentPassword);
 
         if (!correctPw) {
@@ -41,8 +42,9 @@ const resolvers = {
           email: args.newEmail,
           firstName: args.newId,
           lastName: args.newNickname,
-          password: args.newPassword
+          password: await bcrypt.hash(args.newPassword, saltRounds)
         }, { new: true });
+        
         return updateUser;
       }
 
