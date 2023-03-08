@@ -29,19 +29,20 @@ const resolvers = {
     
     updateUser: async (parent, args, context) => {
       if (context.user) {
+        const user = await User.findById(context.userId);
         const correctPw = await user.isCorrectPassword(args.currentPassword);
 
         if (!correctPw) {
           throw new AuthenticationError('Incorrect credentials');
         }
         
-        const user = await User.findByIdAndUpdate(context.user._id, {
+        const updateUser = await User.findByIdAndUpdate(context.user._id, {
           email: args.newEmail,
           firstName: args.newId,
           lastName: args.newNickname,
           password: args.newPassword
         }, { new: true });
-        return user;
+        return updateUser;
       }
 
       throw new AuthenticationError('Not logged in');
