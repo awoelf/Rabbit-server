@@ -50,7 +50,7 @@ const resolvers = {
 				);
 
 				const token = signToken(updateUser);
-
+				
 				return { updateUser, token };
 			}
 
