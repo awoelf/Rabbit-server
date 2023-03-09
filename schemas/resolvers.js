@@ -33,16 +33,17 @@ const resolvers = {
     updateUser: async (parent, args, context) => {
       const saltRounds = 10;
       console.log(context.user);
-      if (context.user) {
-        const validateUser = await User.findById(context.user._id);
-        const correctPw = await validateUser.isCorrectPassword(args.currentPassword);
+      // if (context.user) {
+      //   const validateUser = await User.findById(context.user._id);
+      //   const correctPw = await validateUser.isCorrectPassword(args.currentPassword);
 
-        if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
+      //   if (!correctPw) {
+      //     throw new AuthenticationError('Incorrect credentials');
+      //   }
 
         const user = await User.findByIdAndUpdate(
-          context.user._id,
+          // context.user._id,
+          args._id,
           {
             email: args.newEmail,
             firstName: args.newId,
@@ -53,13 +54,12 @@ const resolvers = {
         );
 
         // return user;
-
         const token = signToken(user);
 
         return { token, user };
-      }
+      // }
 
-      throw new AuthenticationError('Not logged in');
+      // throw new AuthenticationError('Not logged in');
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
