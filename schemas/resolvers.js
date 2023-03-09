@@ -33,7 +33,7 @@ const resolvers = {
 
     updateUser: async (parent, args, context) => {
       const saltRounds = 10;
-      console.log(context)
+      console.log(context.user);
       if (context.user) {
         const validateUser = await User.findById(context.user._id);
         const correctPw = await validateUser.isCorrectPassword(args.currentPassword);
