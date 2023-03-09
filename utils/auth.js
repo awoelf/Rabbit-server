@@ -17,7 +17,7 @@ module.exports = {
     }
 
     try {
-      const { data } = jwt.verify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImZpcnN0TmFtZSI6ImJvYmJ5IiwibGFzdE5hbWUiOiJibG9iMiIsImVtYWlsIjoiYWxleGlzMzIxQGEuY29tIiwiX2lkIjoiNjQwOTBjZjc5M2YzZTQzYTMyZGQ3M2M5In0sImlhdCI6MTY3ODMyMDA5OSwiZXhwIjoxNjc4MzI3Mjk5fQ.xBtAX4TNPHSFQKV_8-DvUk9DufHT5h5iI0k-J3pGCkA', secret, { maxAge: expiration });
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch (error) {
       console.log(error);
