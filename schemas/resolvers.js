@@ -85,7 +85,7 @@ const resolvers = {
     verifyUser: async (parent, args, context) => {
       console.log(args);
       const token = signToken(args);
-      return { token, user };
+      return { token, user: args };
     },
 
     addFriend: async (parent, args) => {
