@@ -6,40 +6,28 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    friends: [User]!
   }
-
-  type Post {
-    _id: ID
-    postAuthor: String
-    title: String
-    textContent: String
-    imageContent: String
-    likes: Int
-    createdAt: Date
-    comments: [Comment]
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: ID
-    createdAt: Date
-  }
-
   type Auth {
     token: ID
     user: User
   }
-
   type Query {
     user: User
     allUsers: [User]
   }
-
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(
+      newEmail: String
+      newId: String
+      newNickname: String
+      newPassword: String
+      currentPassword: String!
+    ): Auth
     login(email: String!, password: String!): Auth
+    addFriend(_id: ID): User
+    removeFriend(_id: ID): User
   }
 `;
 
