@@ -25,7 +25,7 @@ const resolvers = {
       const user = await User.create(args);
 
       console.log(user);
-      
+
       const token = signToken(user);
 
       return { token, user };
@@ -52,9 +52,11 @@ const resolvers = {
           { new: true }
         );
         
-        const token = signToken(user);
+          return user;
 
-        return { token, user };
+        // const token = signToken(user);
+
+        // return { token, user };
       }
 
       throw new AuthenticationError('Not logged in');
