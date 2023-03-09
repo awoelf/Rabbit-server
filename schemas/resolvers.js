@@ -52,11 +52,11 @@ const resolvers = {
           { new: true }
         );
         
-          return user;
+          // return user;
 
-        // const token = signToken(user);
+        const token = signToken(user);
 
-        // return { token, user };
+        return { token, user };
       }
 
       throw new AuthenticationError('Not logged in');
