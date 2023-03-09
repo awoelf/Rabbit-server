@@ -33,6 +33,8 @@ const resolvers = {
     },
     
     updateUser: async (parent, args, context) => {
+      const saltRounds = 10;
+      console.log(context)
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
