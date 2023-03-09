@@ -30,7 +30,6 @@ const resolvers = {
 
       return { token, user };
     },
-
     updateUser: async (parent, args, context) => {
       const saltRounds = 10;
       console.log(context.user);
@@ -52,8 +51,8 @@ const resolvers = {
           },
           { new: true }
         );
-        
-          // return user;
+
+        // return user;
 
         const token = signToken(user);
 
@@ -62,7 +61,6 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -81,14 +79,6 @@ const resolvers = {
 
       return { token, user };
     },
-
-    verifyUser: async (parent, args, context) => {
-      console.log(args);
-      const token = signToken(args);
-      console.log(context.user);
-      return { token, user: args };
-    },
-
     addFriend: async (parent, args) => {
       const friend = User.findOneAndUpdate(
         { _id: args.userId },
