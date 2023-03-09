@@ -24,7 +24,7 @@ const typeDefs = gql`
       newNickname: String
       newPassword: String
       currentPassword: String!
-    ): Auth
+    ): User
     login(email: String!, password: String!): Auth
     addFriend(_id: ID): User
     removeFriend(_id: ID): User
