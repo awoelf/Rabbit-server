@@ -26,6 +26,7 @@ const typeDefs = gql`
       currentPassword: String!
     ): Auth
     login(email: String!, password: String!): Auth
+    verifyUser(firstName: String!, lastName: String!, email: String!, _id: ID!): Auth
     addFriend(_id: ID): User
     removeFriend(_id: ID): User
   }
